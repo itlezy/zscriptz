@@ -1,0 +1,5 @@
+media\foto1;*.jpg;/S *.jpg
+media\foto2;*.jpg;/S *.mp4 *.mov *.avi
+media\foto3; ; 
+media\foto4; ;/S *.mpg
+media\foto5; 

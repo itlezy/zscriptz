@@ -1,0 +1,7 @@
+ECHO %1
+
+PAUSE
+
+IF EXIST %1 (
+  BREAK > %1
+)

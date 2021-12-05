@@ -1,0 +1,19 @@
+@ECHO OFF
+
+ECHO CmdLine : '%CmdCmdLine%'
+ECHO O
+ECHO PSTAR   : '%*'
+ECHO P   1   : '%1'
+ECHO P   2   : '%2'
+ECHO P   3   : '%3'
+ECHO O
+
+SET ZSRC=%1
+SET ZDST=%2
+SET ZPARMS=/S /J /MOVE
+
+ECHO ROBOCOPY %ZSRC% %ZDST% %ZPARMS%
+
+PAUSE
+
+ROBOCOPY %ZSRC% %ZDST% %ZPARMS%

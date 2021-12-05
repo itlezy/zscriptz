@@ -1,0 +1,12 @@
+open scp://usr:pwd@hostxyz.usbx.me -rawsettings SendBuf=0 Compression=0
+
+option confirm off
+option batch
+
+cd ~/zwa-dwnldd
+put *.torrent
+
+cd ~/watch
+put -delete *.torrent
+
+exit

@@ -1,0 +1,2 @@
+tasklist /fi "ImageName eq robocopy.exe" /fo csv 2>NUL | find /I "robocopy.exe">NUL
+if "%ERRORLEVEL%"=="0" echo Program is running

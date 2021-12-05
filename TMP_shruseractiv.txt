@@ -1,0 +1,2 @@
+net user shareusr /active:no
+net user shareusr /active:yes

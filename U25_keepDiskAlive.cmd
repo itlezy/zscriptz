@@ -1,0 +1,8 @@
+CD /D %~dp0
+
+:BEGN
+
+ECHO %TIME% > zzz.dat
+SLEEP 28
+
+GOTO BEGN

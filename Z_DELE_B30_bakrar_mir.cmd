@@ -1,0 +1,31 @@
+@ECHO OFF
+
+CD /D %~dp0
+
+SET BKSETNAME=bakrar
+
+(FOR %%C IN (%ALL_DRIVES_NOC%) DO (
+	CALL :DOMIRR %%C
+))
+
+
+GOTO :EOF
+
+:DOMIRR
+	SET TGTDRV=%~1
+
+	IF NOT EXIST %TGTDRV%:\meta\bak_mir.%BKSETNAME%.dat (
+		ECHO NOT A BACKUP MIRROR TARGET %TGTDRV% SKIPPING..
+		GOTO :EOF
+	)
+
+	IF NOT EXIST %TGTDRV%:\bak_mir (
+		MKDIR %TGTDRV%:\bak_mir
+	)
+
+	IF EXIST %TGTDRV%:\bak (
+		ECHO MIRRORING FROM %USERPROFILE%\my\gdrive\bak TO %TGTDRV%:\bak_mir\%BKSETNAME%
+		ROBOCOPY %USERPROFILE%\my\gdrive\bak %TGTDRV%:\bak_mir\%BKSETNAME% /MIR
+		REM RMDIR /S /Q %TGTDRV%:\bak\%BKSETNAME%\.tresorit
+	)
+GOTO :EOF
