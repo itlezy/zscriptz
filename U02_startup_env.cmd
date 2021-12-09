@@ -22,3 +22,5 @@ SETX G_BIN_SYSIN           "c:\bin\sysin"            /M
 SETX G_BIN_TCMD            "c:\bin\totalcmd"         /M
 SETX G_ZSCRIPTS            "c:\bin\zscripts"         /M
 SETX G_PRJ                 "c:\prj"                  /M
+
+SETX PROMPT                 $p$_:                    /M
