@@ -22,4 +22,5 @@ SLEEP 5
 
 CALL U01_preshutdown.cmd
 
+CD /D %~dp0
 CALL U01_poweroffcmd.cmd

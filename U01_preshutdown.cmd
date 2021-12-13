@@ -1,18 +1,24 @@
+@ECHO OFF
+
 CD /D %~dp0
 
 START U42_EnableLogitech.cmd
 
 CALL U02_startup_env.cmd
 
-ECHO Y | PowerShell.exe -NoProfile -Command Clear-RecycleBin
+CALL U30_rm_recyledbin.cmd
+REM ECHO Y | PowerShell.exe -NoProfile -Command Clear-RecycleBin
+
+START /WAIT "" "%ProgramFiles%\CCleaner\CCleaner64.exe" /AUTO
+REM "%ProgramFiles%\CCleaner\CCleaner64.exe" /AUTO
 
 TASKKILL /IM qbittorrent.exe
-TASKKILL /IM uTorrent.exe
+REM TASKKILL /IM uTorrent.exe
 
 SLEEP 4
 
 TSKILL qbittorrent
-TSKILL uTorrent
+REM TSKILL uTorrent
 
 SLEEP 4
 

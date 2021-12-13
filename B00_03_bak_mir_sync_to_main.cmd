@@ -14,7 +14,7 @@ SET BAKMIR=bak_mir
 	IF EXIST %%C:\meta\bak_mir.main_source.dat (
 		SET BAK_SRC_DRV=%%C
 		ECHO FOUND MAIN BACKUP TARGET %%C BREAKING LOOP..
-		GOTO :PROCEED
+		CALL :PROCEED
 	)
 ))
 
