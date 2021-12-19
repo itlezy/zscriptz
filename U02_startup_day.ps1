@@ -27,9 +27,9 @@ if ($weekend) {
 }
 
 if ("TOR".Equals($Env:COMPUTERNAME)) {
-    Start-Sleep -Seconds 7
+    Start-Sleep -Seconds 8
 } else {
-    Start-Sleep -Seconds 17
+    Start-Sleep -Seconds 20
 }
 
 Start-Process "$Env:G_ZSCRIPTS\U02_startup_chrome.cmd"

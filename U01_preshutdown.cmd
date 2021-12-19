@@ -3,6 +3,9 @@
 CD /D %~dp0
 
 START AHK21_CloseChrome.ahk
+SLEEP 3
+START AHK21_CloseQbittorrent.ahk
+SLEEP 3
 START U42_EnableLogitech.cmd
 
 CALL U02_startup_env.cmd
