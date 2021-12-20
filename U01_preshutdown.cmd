@@ -13,8 +13,7 @@ CALL U02_startup_env.cmd
 CALL U30_rm_recyledbin.cmd
 REM ECHO Y | PowerShell.exe -NoProfile -Command Clear-RecycleBin
 
-START /WAIT "" "%ProgramFiles%\CCleaner\CCleaner64.exe" /AUTO
-REM "%ProgramFiles%\CCleaner\CCleaner64.exe" /AUTO
+REM START /WAIT "" "%ProgramFiles%\CCleaner\CCleaner64.exe" /AUTO
 
 TASKKILL /IM qbittorrent.exe
 REM TASKKILL /IM uTorrent.exe

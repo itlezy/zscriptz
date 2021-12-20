@@ -278,11 +278,20 @@ return
         Send {WheelDown}
     return
 
+; alt-d - duplicate current tab
     !d::
         Send ^l
         Sleep 200
         Send !{Enter}
     return
+
+    !b::
+        Send, ^c
+        ClipWait
+        Sleep, 300
+        Run, "%gglchrm%" --profile-directory="%gglprof%" "https://bt4g.org/search/%clipboard%/bysize/1"
+    return
+
     ; NumpadSub::Send ^{NumpadSub}
     ; NumpadAdd::Send ^{NumpadAdd}
 #If

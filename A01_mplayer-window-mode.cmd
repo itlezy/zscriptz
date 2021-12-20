@@ -10,7 +10,7 @@ ECHO %*
 ECHO ------------------------------------------------------------------------------------------------------------------------------------------
 
 REM CD /D "%PROGRAMFILES%\SMPlayer\mplayer"
-CD /D "%G_BIN%\MPlayer-x86_64-r38313+g7ee17ec7e4"
+CD /D "%G_BIN%\MPlayer-x86_64-r38322+g682bafdb12"
 
 REM START "" /REALTIME /MIN mplayer.exe -idx -vo gl -zoom -x 1024 -y 768 -volume 55 %1
 REM START "" /REALTIME mplayer.exe -vo gl -zoom -xy 1600 -vf scale -volume 55 %1
