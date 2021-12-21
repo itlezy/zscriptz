@@ -1,0 +1,1 @@
+schtasks /create /tn ahk /tr %~dp0U02_startup_tasksched.cmd /sc onlogon

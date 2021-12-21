@@ -6,7 +6,7 @@ IF NOT DEFINED G_ZSCRIPTS (
 	GOTO :EOF
 )
 
-START U02_startup_AHK_create_task.cmd
+START U02_startup_tasksched_create_task.cmd
 
 SETX PATH %G_BIN%\overrides;%G_ZSCRIPTS%\global;%PATH% /M
 
