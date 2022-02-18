@@ -1,6 +1,6 @@
 CD /D %~dp0
 
-REM CALL U02_startup_chrome_clean.cmd
+CALL U02_startup_chrome_clean.cmd
 
 POWERCFG /H off
 

@@ -19,7 +19,7 @@ SETX G_CHROME_PROF_UMSC    "Profile 1"
 REM WRK
 SETX G_CHROME_PROF_UWRK    "Profile 6"
 
-SETX G_CHROME_CMDLINE_OPT  "--disable-smooth-scrolling --start-maximized --disable-features=TabGroups,TabGroupsAutoCreate,TabGroupsCollapse,TabGroupsCollapseFreezing,TabHoverCardImages"
+SETX G_CHROME_CMDLINE_OPT  "--disable-smooth-scrolling --disable-crash-reporter --start-maximized --disable-features=TabGroups,TabGroupsAutoCreate,TabGroupsCollapse,TabGroupsCollapseFreezing,TabHoverCardImages"
 
 SETX G_BIN                 "c:\bin"                  /M
 SETX G_BIN_SYSIN           "c:\bin\sysin"            /M
