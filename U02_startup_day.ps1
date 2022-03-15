@@ -6,17 +6,22 @@ $weekend = $false
 Write-Output $day
 
 switch($day) {
-    { ($_ -eq "Sunday") -or ($_ -eq "Saturday") } {
+    { ($_ -eq "Sunday") -or ($_ -eq "Saturday") -or ((Get-Date).Hour -gt 18) } {
 
-        # Start-Process "$Env:G_ZSCRIPTS\A02_qbittorent.cmd"
-        Start-Process "$Env:G_ZSCRIPTS\U41_EnableBT.cmd"
+        if ("LEN".Equals($Env:COMPUTERNAME)) {
+            # Start-Process "$Env:G_ZSCRIPTS\A02_qbittorent.cmd"
+            Start-Process "$Env:G_ZSCRIPTS\U41_EnableBT.cmd"
+        }
+
         $weekend = $true
 
         break;
     }
     default {
 
-        Start-Process "$Env:G_ZSCRIPTS\U42_EnableLogitech.cmd"
+    if ("LEN".Equals($Env:COMPUTERNAME)) {
+            Start-Process "$Env:G_ZSCRIPTS\U42_EnableLogitech.cmd"
+    }
 
         break;
     }
@@ -27,9 +32,9 @@ if ($weekend) {
 }
 
 if ("TOR".Equals($Env:COMPUTERNAME)) {
-    Start-Sleep -Seconds 8
+    Start-Sleep -Seconds 7
 } else {
-    Start-Sleep -Seconds 20
+    Start-Sleep -Seconds 22
 }
 
 Start-Process "$Env:G_ZSCRIPTS\U02_startup_chrome.cmd"
