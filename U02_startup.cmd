@@ -1,6 +1,6 @@
 CD /D %~dp0
 
-REM START lockpc.cmd
+START U01_lockcmd.cmd
 
 powershell -command .\U02_startup_day.ps1
 

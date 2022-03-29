@@ -6,6 +6,7 @@ $weekend = $false
 Write-Output $day
 
 switch($day) {
+    # weekend
     { ($_ -eq "Sunday") -or ($_ -eq "Saturday") -or ((Get-Date).Hour -gt 18) } {
 
         if ("LEN".Equals($Env:COMPUTERNAME)) {
@@ -19,12 +20,19 @@ switch($day) {
     }
     default {
 
+    # other days of the week
     if ("LEN".Equals($Env:COMPUTERNAME)) {
             Start-Process "$Env:G_ZSCRIPTS\U42_EnableLogitech.cmd"
     }
 
         break;
     }
+}
+
+# computer-specific
+if ("LEN".Equals($Env:COMPUTERNAME)) {
+    Start-Process "$Env:G_ZSCRIPTS\A02_qbittorent.cmd"
+    $weekend = $true
 }
 
 if ($weekend) {
