@@ -10,7 +10,6 @@ switch($day) {
     { ($_ -eq "Sunday") -or ($_ -eq "Saturday") -or ((Get-Date).Hour -gt 18) } {
 
         if ("LEN".Equals($Env:COMPUTERNAME)) {
-            # Start-Process "$Env:G_ZSCRIPTS\A02_qbittorent.cmd"
             Start-Process "$Env:G_ZSCRIPTS\U41_EnableBT.cmd"
         }
 
@@ -31,7 +30,7 @@ switch($day) {
 
 # computer-specific
 if ("LEN".Equals($Env:COMPUTERNAME)) {
-    Start-Process "$Env:G_ZSCRIPTS\A02_qbittorent.cmd"
+    # Start-Process "$Env:G_ZSCRIPTS\A02_qbittorent.cmd"
     $weekend = $true
 }
 

@@ -1,6 +1,6 @@
 CD /D %~dp0
 
-START U01_lockcmd.cmd
+%ComSpec% /C U01_lockcmd.cmd
 
 powershell -command .\U02_startup_day.ps1
 
