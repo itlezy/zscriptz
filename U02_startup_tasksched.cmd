@@ -19,4 +19,10 @@ CD /D %~dp0
 START /MIN "" AHK20_Startup.ahk
 START /MIN "" U02_startup_AHK.cmd
 
+IF "%COMPUTERNAME%" == "ZZLEN" (
+    CD /D %~dp0
+    START /MIN "" A02_qbittorent.cmd
+    START /MIN "" A02_emule.cmd
+)
+
 EXIT
