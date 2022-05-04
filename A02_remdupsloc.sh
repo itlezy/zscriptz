@@ -26,13 +26,19 @@ do
   fi
 
   if [ -f "/x/torr_archived/$fz" ]; then
-    echo "Removing dup $fz"
+    echo "Removing dup AR $fz"
     rm "$fz"
   fi
-  
-  if [ ! -f "/x/torr_archived/$fz" ]; then
-    echo "Creating placeholder /x/torr_archived/$fz"
-    echo -n "1">"/x/torr_archived/$fz"
+
+#   if [ -f "$f" ] && [ -f "/x/zprn/VUZE_ZTOR_ARC/$fz" ]; then
+#     echo "Removing dup AZ $fz"
+#     rm "$fz"
+#   fi
+
+  if [ -f "$f" ] && [ ! -f "/x/torr_archived/$fz" ]; then
+    echo "Saving tor /x/torr_archived/$fz"
+    #echo -n "1">"/x/torr_archived/$fz"
+    cp "$f" "/x/torr_archived/$fz"
     # attrib +H +S "zwadwnldd/$fz"
   fi
 
@@ -44,4 +50,4 @@ done
 
 mv *.torrent /x/torr_incoming/
 
-sleep 4
+sleep 8
