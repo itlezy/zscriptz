@@ -4,9 +4,29 @@
 ; ^ Control
 ; + Shift
 
+; MsgBox, % UriEncode("http://foo bar/ + + ")
+ 
+; Modified from http://goo.gl/0a0iJq
+UriEncode(Uri)
+{
+	VarSetCapacity(Var, StrPut(Uri, "UTF-8"), 0)
+	StrPut(Uri, &Var, "UTF-8")
+	f := A_FormatInteger
+	SetFormat, IntegerFast, H
+	While Code := NumGet(Var, A_Index - 1, "UChar")
+		If (Code >= 0x30 && Code <= 0x39 ; 0-9
+			|| Code >= 0x41 && Code <= 0x5A ; A-Z
+			|| Code >= 0x61 && Code <= 0x7A) ; a-z
+			Res .= Chr(Code)
+		Else
+			Res .= "%" . SubStr(Code + 0x100, -1)
+	SetFormat, IntegerFast, %f%
+	Return, Res
+}
+
 ; Handy shortcuts
  #F7::Run, "%G_ZSCRIPTS%\A02_qbittorent.cmd",,Min
- #F8::Run, "%G_ZSCRIPTS%\A02_remdupsloc.sh"
+ #F8::Run, "%G_BIN%\ArchiveTorrents\ArchiveTorrents.exe"
  #F9::Run, "%USERPROFILE%\my\doc\security\DatabaseNewIreland4.kdbx"
 #F11::Run, "%G_ZSCRIPTS%\U45_control-audio-devices.cmd",,Min
 #F12::Run, "%SystemRoot%\System32\SndVol.exe"
@@ -16,8 +36,8 @@
     Send, ^c
     ClipWait
     Sleep, 300
-    StringReplace, clipboard, clipboard, `", , All
-    Run, "%gglchrm%" --profile-directory="%gglprof%" "%gglsrchEN%what is the meaning of %clipboard%" "http://dictionary.reverso.net/english-definition/%clipboard%"
+    SrchTerm = % UriEncode(clipboard)
+    Run, "%gglchrm%" --profile-directory="%gglprof%" "%gglsrchEN%what is the meaning of %SrchTerm%" "http://dictionary.reverso.net/english-definition/%SrchTerm%"
 return
 
 ; Translate in Google
@@ -25,8 +45,8 @@ return
     Send, ^c
     ClipWait
     Sleep, 300
-    StringReplace, clipboard, clipboard, `", , All
-    Run, "%gglchrm%" --profile-directory="%gglprof%" "%gglsrchEN%translate %clipboard% from italian to english" "http://dictionary.reverso.net/italian-english/%clipboard%"
+    SrchTerm = % UriEncode(clipboard)
+    Run, "%gglchrm%" --profile-directory="%gglprof%" "%gglsrchEN%translate %SrchTerm% from italian to english" "http://dictionary.reverso.net/italian-english/%SrchTerm%"
 return
 
 ; Computer Control Commands
@@ -84,7 +104,6 @@ return
     ClipWait
     Sleep, 300
 
-    StringReplace, clipboard, clipboard, `", , All
     StringGetPos, pos1, clipboard, http
     StringGetPos, pos2, clipboard, www.
 
@@ -94,8 +113,8 @@ return
     }
     else
     {
-        ;StringReplace, clipboard, clipboard, %A_SPACE%, `%20, All        
-        Run, "%gglchrm%" --profile-directory="%gglprof%" "%gglsrchEN%%clipboard%"
+        SrchTerm = % UriEncode(clipboard)
+        Run, "%gglchrm%" --profile-directory="%gglprof%" "%gglsrchEN%%SrchTerm%"
     }
 return
 
@@ -122,7 +141,6 @@ return
     ClipWait
     Sleep, 300
 
-    StringReplace, clipboard, clipboard, `", , All
     StringGetPos, pos1, clipboard, http
     StringGetPos, pos2, clipboard, www.
 
@@ -132,7 +150,8 @@ return
     }
     else
     {
-        Run, "%gglchrm%" --profile-directory="%gglprof%" "%gglsrchIT%%clipboard%"
+        SrchTerm = % UriEncode(clipboard)
+        Run, "%gglchrm%" --profile-directory="%gglprof%" "%gglsrchIT%%SrchTerm%"
     }
 return
 
@@ -142,8 +161,8 @@ return
     Send, ^c
     ClipWait
     Sleep, 300
-    StringReplace, clipboard, clipboard, `", , All
-    Run, "%gglchrm%" --profile-directory="%gglprof%" "%gglsrchEN%`%22%clipboard%`%22"
+    SrchTerm = % UriEncode(clipboard)
+    Run, "%gglchrm%" --profile-directory="%gglprof%" "%gglsrchEN%`%22%SrchTerm%`%22"
 return
 
 ; CTRL + SHIFT + MS + G (ITA QUOTES)
@@ -152,8 +171,8 @@ return
     Send, ^c
     ClipWait
     Sleep, 300
-    StringReplace, clipboard, clipboard, `", , All
-    Run, "%gglchrm%" --profile-directory="%gglprof%" "%gglsrchIT%`%22%clipboard%`%22"
+    SrchTerm = % UriEncode(clipboard)
+    Run, "%gglchrm%" --profile-directory="%gglprof%" "%gglsrchIT%`%22%SrchTerm%`%22"
 return
 
 ; ! Alt
@@ -205,6 +224,8 @@ return
 
 #IfWinActive ahk_exe mplayer.exe
     Backspace::WinKill
+    q::WinKill
+    Enter::WinKill
     ;Run, "%G_ZSCRIPTS%\U30_killmpc.cmd", ,min
 #IfWinActive
 
@@ -285,11 +306,13 @@ return
         Send !{Enter}
     return
 
+; alt-b - search in BT4G
     !b::
         Send, ^c
         ClipWait
         Sleep, 300
-        Run, "%gglchrm%" --profile-directory="%gglprof%" "https://bt4g.org/search/%clipboard%/bysize/1"
+        SrchTerm = % UriEncode(clipboard)
+        Run, "%gglchrm%" --profile-directory="%gglprof%" "https://bt4g.org/search/%SrchTerm%/bysize/1"
     return
 
     ; NumpadSub::Send ^{NumpadSub}

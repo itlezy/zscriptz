@@ -18,6 +18,8 @@ IF EXIST %TORRPATH% (
 	ECHO %TIME% > %TORRPATH%\wakeup.dat
 	DEL %TORRPATH%\wakeup.dat
 
-	CD /D "%PROGRAMFILES%\qBittorrent"
-	START "" "%PROGRAMFILES%\qBittorrent\qbittorrent.exe"
+	REM CD /D "%PROGRAMFILES%\qBittorrent"
+	REM START "" "%PROGRAMFILES%\qBittorrent\qbittorrent.exe"
+	CD /D "c:\prj\p2p\qBittorent-lezy-422\build\"
+	START "" "c:\prj\p2p\qBittorent-lezy-422\build\qbittorrent.exe"
 )

@@ -1,18 +1,22 @@
 unset HISTFILE
 
-if [ ! -d "/x/torr_incoming/" ]; then
-    echo "Please, mount x:"
+TORR_DOWNLOADED="$USERPROFILE/Downloads"
+TORR_INCOMING="/x/torr_incoming"
+TORR_ARCHIVED="/x/torr_archived"
+
+if [ ! -d "$TORR_INCOMING" ]; then
+    echo "Directory unavailable. Please, mount $TORR_INCOMING"
     sleep 4
     exit
 fi
 
-cd $USERPROFILE
-cd Downloads
+echo "Torrent files will be copied from [$TORR_DOWNLOADED] to [$TORR_INCOMING]"
+cd "$TORR_DOWNLOADED"
 
 pwd
-sleep 1
+sleep 2
 
-# remove duplicate downloads in the first place
+# remove duplicate downloads in the first place, like "abc (1).torrent"
 rm *\ \(?\).torrent
 
 # check for duplicates in the archive and remove them
@@ -22,32 +26,27 @@ do
   fz=`basename "$f"`
 
   if [ ! -f "$f" ]; then
+    echo "No downloaded torrents found in [$TORR_DOWNLOADED], exiting.."
+    sleep 4
     exit
   fi
 
-  if [ -f "/x/torr_archived/$fz" ]; then
-    echo "Removing dup AR $fz"
+  # remove duplicate torrent which is existent in the archive
+  if [ -f "$TORR_ARCHIVED/$fz" ]; then
+    echo "Removing duplicate $fz"
     rm "$fz"
   fi
 
-#   if [ -f "$f" ] && [ -f "/x/zprn/VUZE_ZTOR_ARC/$fz" ]; then
-#     echo "Removing dup AZ $fz"
-#     rm "$fz"
-#   fi
-
-  if [ -f "$f" ] && [ ! -f "/x/torr_archived/$fz" ]; then
-    echo "Saving tor /x/torr_archived/$fz"
-    #echo -n "1">"/x/torr_archived/$fz"
-    cp "$f" "/x/torr_archived/$fz"
-    # attrib +H +S "zwadwnldd/$fz"
+  # save torrent to the archive
+  if [ -f "$f" ] && [ ! -f "$TORR_ARCHIVED/$fz" ]; then
+    echo "Saving torrent to  $TORR_ARCHIVED/$fz"
+    cp "$f" "$TORR_ARCHIVED/$fz"
   fi
 
 done
 
-# cp *.torrent zwa-dwnldd/
+# move unique and new torrents to the incoming directory
+mv *.torrent "$TORR_INCOMING/"
 
-# rm -f *.torrent
-
-mv *.torrent /x/torr_incoming/
-
-sleep 8
+echo "Done, exiting.."
+sleep 4
