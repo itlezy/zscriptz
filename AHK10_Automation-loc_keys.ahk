@@ -122,16 +122,19 @@ return
 ; Prompt to Search in Google
 !#g::
     InputBox, UserInput, Search for, Search for
-    StringReplace, UserInput, UserInput, `", , All
-    Run, "%gglchrm%" --profile-directory="%gglprof%" "%gglsrchEN%%UserInput%"
+    if (ErrorLevel = 0) {
+      SrchTerm = % UriEncode(UserInput)
+      Run, "%gglchrm%" --profile-directory="%gglprof%" "%gglsrchEN%%SrchTerm%"
+    }
 return
 
 ; CTRL + ALT + MS + G
 ; Prompt to Search in Google
 ^!#g::
     InputBox, UserInput, Search for, Search for
-    StringReplace, UserInput, UserInput, `", , All
-    Run, "%gglchrm%" --profile-directory="%gglprof%" "%gglsrchIT%%UserInput%"
+    if (ErrorLevel = 0)
+      SrchTerm = % UriEncode(UserInput)
+      Run, "%gglchrm%" --profile-directory="%gglprof%" "%gglsrchIT%%SrchTerm%"
 return
 
 ; CTRL + MS + G (ITA)
