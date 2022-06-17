@@ -265,7 +265,7 @@ return
         WinGet, wpid, PID, A
         ;MsgBox "%G_BIN%\sysin\pskill.exe -t %wpid%"
         ;Run, %G_BIN%\sysin\pskill.exe -t %wpid%
-        Run, TASKKILL /PID %wpid% /T /F
+        Run, TASKKILL /PID %wpid% /T /F, , Min
     return
 #IfWinActive
 
