@@ -1,0 +1,18 @@
+[
+  {
+    "key": "alt+d",
+    "action": "clonetab",
+    "sites": "",
+    "sitesArray": [
+      ""
+    ]
+  },
+  {
+    "key": "ctrl+.",
+    "action": "closerighttabs",
+    "sites": "",
+    "sitesArray": [
+      ""
+    ]
+  }
+]

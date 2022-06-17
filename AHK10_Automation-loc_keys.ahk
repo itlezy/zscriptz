@@ -302,12 +302,12 @@ return
         Send {WheelDown}
     return
 
-; alt-d - duplicate current tab
-    !d::
-        Send ^l
-        Sleep 200
-        Send !{Enter}
-    return
+; - ; ; alt-d - duplicate current tab
+; - ;     !d::
+; - ;         Send ^l
+; - ;         Sleep 200
+; - ;         Send !{Enter}
+; - ;     return
 
 ; alt-b - search in BT4G
     !b::
